@@ -12,6 +12,8 @@ tmux:
 
 virtualbox:
 	yay -S virtualbox
+	yay -S virtualbox-host-modules-arch
+	sudo modprobe vboxdrv
 
 aliases:
 	cat ~/.dotfiles/.aliases >> ~/.config/fish/config.fish
