@@ -1,7 +1,6 @@
 
 tools:
 	pacman -S yay
-	yay -S virtualbox
 	make tmux
 
 tmux:
@@ -18,3 +17,6 @@ virtualbox:
 aliases:
 	cat ~/.dotfiles/.aliases >> ~/.config/fish/config.fish
 	cat ~/.dotfiles/.aliases >> ~/.bashrc
+
+R:
+	yay -S r

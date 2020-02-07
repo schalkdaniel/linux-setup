@@ -1,1 +1,2 @@
 alias tmux-base='tmux-base.sh'
+alias R='R --no-save --no-restore-data --quiet'
