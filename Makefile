@@ -2,6 +2,13 @@
 tools:
 	pacman -S yay
 	make tmux
+	make termite
+
+termite:
+	yay -S termite
+	yay -S otf-hermit
+	mkdir ~/.config/termite/
+	ln -s -f ~/linux-setup/.dotfiles/termite/config ~/.config/termite/config
 
 tmux:
 	yay -S tmux
