@@ -1,6 +1,7 @@
 
 tools:
 	pacman -S yay
+	yay -S curl
 	make tmux
 	make termite
 
@@ -25,5 +26,5 @@ aliases:
 	cat ~/.dotfiles/.aliases >> ~/.config/fish/config.fish
 	cat ~/.dotfiles/.aliases >> ~/.bashrc
 
-R:
+r:
 	yay -S r
