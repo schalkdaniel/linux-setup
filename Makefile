@@ -1,9 +1,22 @@
+all:
+	make tools
 
 tools:
 	pacman -S yay
 	yay -S curl
-	make tmux
+	make vim
 	make termite
+	make tmux
+
+vim:
+	sudo apt build-dep vim
+	git clone https://github.com/vim/vim.git
+	cd vim/src
+	sudo make distclean
+	./configure --enable-gui=no --with-x --enable-pythoninterp
+	sudo make
+	sudo make install
+	ln -s -f ~/linux-setup/.dotfiles/.vimrc ~/
 
 termite:
 	yay -S termite
