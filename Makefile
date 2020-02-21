@@ -4,6 +4,7 @@ all:
 tools:
 	pacman -S yay
 	yay -S curl
+	yay -S python3
 	make vim
 	make termite
 	make tmux

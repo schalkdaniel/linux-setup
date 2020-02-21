@@ -65,6 +65,12 @@ Plug 'jalvesaq/Nvim-R'
 " Efficient move commands: https://github.com/matze/vim-move
 Plug 'matze/vim-move'
 
+" Easy editing of parantheses:
+Plug 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate'
+
+
+
 call plug#end()
 
 
