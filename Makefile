@@ -8,6 +8,7 @@ tools:
 	make vim
 	make termite
 	make tmux
+	make r
 
 vim:
 	sudo apt build-dep vim
@@ -31,6 +32,9 @@ tmux:
 	chmod u+x ~/linux-setup/bin/tmux-base.sh
 	sudo ln -s -f ~/linux-setup/bin/tmux-base.sh /usr/local/bin
 
+r:
+	yay -S r
+
 virtualbox:
 	yay -S virtualbox
 	yay -S virtualbox-host-modules-arch
@@ -39,6 +43,3 @@ virtualbox:
 aliases:
 	cat ~/.dotfiles/.aliases >> ~/.config/fish/config.fish
 	cat ~/.dotfiles/.aliases >> ~/.bashrc
-
-r:
-	yay -S r
