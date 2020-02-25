@@ -1,0 +1,3 @@
+In terminal mode:
+- Normal mode: CTRL-w N (then do the same as for normal files)
+- Insert mode: i

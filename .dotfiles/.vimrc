@@ -86,7 +86,7 @@ endif
 
 let R_pdfviewer = 'evince'
 let g:R_assign = 0                  " Don't create the assign arrow when typing "_"
-
+let R_args = ['--no-save', '--no-restore-data', '--quiet']
 " Send line to R console
 autocmd VimEnter * map <C-l> 0\lj
 
