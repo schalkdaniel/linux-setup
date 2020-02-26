@@ -34,6 +34,8 @@ tmux:
 
 r:
 	yay -S r
+	sudo ln -s -f ~/linux-setup/.dotfiles/.Renviron ~/
+	sudo ln -s -f ~/linux-setup/.dotfiles/.Rprofile ~/
 
 virtualbox:
 	yay -S virtualbox
