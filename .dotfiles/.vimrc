@@ -39,6 +39,9 @@ hi SpellBad cterm=underline ctermfg=red
 "inoremap {<CR> {<CR>}<ESC>O
 "inoremap {;<CR> {<CR>};<ESC>O
 
+" Navigate in completion with j and k instead of C-n and C-p:
+"inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
+"inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
 
 
 " PLUGIN SECTION
@@ -65,7 +68,7 @@ Plug 'jalvesaq/Nvim-R'
 " Efficient move commands: https://github.com/matze/vim-move
 Plug 'matze/vim-move'
 
-" Easy editing of parantheses:
+" Easy  editing of parantheses:
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 
