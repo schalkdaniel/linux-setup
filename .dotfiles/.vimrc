@@ -1,24 +1,22 @@
 " BASIC CONFIGS
 " ===========================================================
 
-
 set backupdir=~/.vim_files/.backup/,.,~/tmp,/var/tmp,/tmp
 set directory=~/.vim_files/.swp/,.,~/tmp,/var/tmp,/tmp
 set undodir=~/.vim_files/.undo/,.,~/tmp,/var/tmp,/tmp
 
-
-set ve+=onemore		" Enable curser to be AFTER the last letter
+set ve+=onemore		" Enable cursor to be AFTER the last letter
 
 set number		" Add line numbers to files
 " set spell          	" Enable spell checking
 
 set tabstop=2        	" Defines the blanks of a tab
-set shiftwidth=2	" Defines how many blanks a shift (<C-t> or <C-d>) is
-set expandtab		" Use spaces instead of tabs!
-set autoindent          " Should do indenting automatically
-set smartindent		" Should do indenting automagically
+set shiftwidth=2	    " Defines how many blanks a shift (<C-t> or <C-d>) is
+set expandtab		      " Use spaces instead of tabs!
+set autoindent        " Should do indenting automatically
+set smartindent		    " Should do indenting automagically
 set cindent          	" Indenting for C type languages
-set showcmd             " Shows the commands in the lower right corner
+set showcmd           " Shows the commands in the lower right corner
 set mouse=a
 
 set clipboard=unnamedplus
@@ -30,19 +28,12 @@ autocmd BufWritePre * %s/\s\+$//e 	" Trim trialing white spaces
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=red
 
-" Automatically close paranthesis:
-"inoremap " ""<left>
-"inoremap ' ''<left>
-"inoremap ( ()<left>
-"inoremap [ []<left>
-"inoremap { {}<left>
-"inoremap {<CR> {<CR>}<ESC>O
-"inoremap {;<CR> {<CR>};<ESC>O
-
 " Navigate in completion with j and k instead of C-n and C-p:
 "inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
 "inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
-
+"
+" Custom command to enter a new line in normal mode
+map <Enter> O<ESC>
 
 " PLUGIN SECTION
 " ===========================================================
@@ -67,10 +58,10 @@ Plug 'jalvesaq/Nvim-R'
 
 " Efficient move commands: https://github.com/matze/vim-move
 Plug 'matze/vim-move'
-
+"
 " Easy  editing of parantheses:
-Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-surround'
 
 
 
@@ -102,9 +93,6 @@ let g:move_key_modifier = 'C'
 
 " Custom commands:
 " -----------------------
-
-" Custom command to enter a new line in normal mode
-map <Enter> O<ESC>
 
 " Required for clang complete
 let g:clang_library_path='/usr/lib64/libclang.so.9'
