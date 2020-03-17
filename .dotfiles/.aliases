@@ -1,2 +1,15 @@
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+
+command -v lsd &> /dev/null && alias ls='lsd --group-dirs first'
+command -v htop &> /dev/null && alias top='htop'
+
+alias ..='cd ..'
+alias vi='vim'
+alias pacman='pacman --color=always'
+
 alias tmux-base='tmux-base.sh'
 alias R='R --no-save --no-restore-data --quiet'
