@@ -3,6 +3,8 @@ all:
 
 tools:
 	pacman -S yay
+	yay -S git
+	make git-setup
 	yay -S curl
 	yay -S python3
 	yay -S lsd
@@ -13,6 +15,9 @@ tools:
 	make tmux
 	make r
 	ln -s -f ~/linux-setup/.dotfiles/.bashrc ~/
+
+git-setup:
+	ln -s -f ~/linux-setup/.dotfiles/.gitconfig ~/
 
 zsh-setup:
 	chsh -s "$( which zsh)"
