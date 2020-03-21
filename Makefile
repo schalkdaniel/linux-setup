@@ -51,6 +51,15 @@ tmux:
 	chmod u+x ~/linux-setup/bin/tmux-base.sh
 	sudo ln -s -f ~/linux-setup/bin/tmux-base.sh /usr/local/bin
 
+tmux-color-scheme:
+	TMUX_CONF=~/linux-setup/.dotfiles/.tmux.conf
+	TERMITE_CONF=~/.config/termite/config
+	getColorFromFile () { cat $2 | grep $1= | cut -d= -f2- }
+	sed '/^set -g status-right/d' $TMUX_CONF > $TMUX_CONT
+	sed '/^set -g status-left/d' $TMUX_CONF > $TMUX_CONT
+	echo 'foreground='$(getColorFromFile foreground $TERMITE_CONF) >> test.txt
+
+
 nerd-font:
 	git clone https://github.com/ryanoasis/nerd-fonts.git ~/
 	~/nerd-fonts/install.sh
