@@ -3,7 +3,14 @@
 ZSH_CONF=~/linux-setup/.dotfiles/.zshrc
 TERMITE_CONF=~/.config/termite/config
 
-eval "cp "$ZSH_CONF" "$ZSH_CONF"_backuptest"
+eval "cp "$ZSH_CONF" "$ZSH_CONF"_backup"
+
+# Remove Windows line endings:
+sed -i 's/\r//' $TERMITE_CONF
+# Remove all spaces (important for spaces between = and colors) but keep spaces in font:
+font="$(cat $TERMITE_CONF | grep font)"
+sed -ri 's/\s+//g' $TERMITE_CONF
+sed -i "/font/c $font" $TERMITE_CONF
 
 getColorFromFile () {
   cat $2 | grep $1= | cut -d= -f2-
@@ -24,12 +31,14 @@ echo "POWERLEVEL9K_VCS_CLEAN_FOREGROUND=black" >> $ZSH_CONF
 echo "POWERLEVEL9K_VCS_CLEAN_BACKGROUND=green" >> $ZSH_CONF
 echo "POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=black" >> $ZSH_CONF
 echo "POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=yellow" >> $ZSH_CONF
-echo "POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=white" >> $ZSH_CONF
-echo "POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=black" >> $ZSH_CONF
-echo "POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=black" >> $ZSH_CONF
+echo "POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="$(getColorFromFile background $TERMITE_CONF) >> $ZSH_CONF
+echo "POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="$(getColorFromFile foreground $TERMITE_CONF) >> $ZSH_CONF
+echo "POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=white" >> $ZSH_CONF
 echo "POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$(getColorFromFile color5 $TERMITE_CONF) >> $ZSH_CONF
 echo "POWERLEVEL9K_DIR_FOREGROUND="$(getColorFromFile background $TERMITE_CONF) >> $ZSH_CONF
 echo "POWERLEVEL9K_DIR_BACKGROUND="$(getColorFromFile color5 $TERMITE_CONF) >> $ZSH_CONF
+echo "POWERLEVEL9K_RAM_FOREGROUND="$(getColorFromFile background $TERMITE_CONF) >> $ZSH_CONF
+echo "POWERLEVEL9K_RAM_BACKGROUND="$(getColorFromFile color5 $TERMITE_CONF) >> $ZSH_CONF
 echo "POWERLEVEL9K_FOLDER_ICON=" >> $ZSH_CONF
 echo "POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true" >> $ZSH_CONF
 echo "POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0" >> $ZSH_CONF
@@ -46,4 +55,3 @@ echo "POWERLEVEL9K_CUSTOM_OS_ICON_FOREGROUND="$(getColorFromFile background $TER
 echo "POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_os_icon ssh root_indicator dir dir_writable vcs)" >> $ZSH_CONF
 echo "POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_jobs time ram)" >> $ZSH_CONF
 
-. ~/.zshrc
