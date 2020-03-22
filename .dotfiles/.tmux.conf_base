@@ -1,0 +1,38 @@
+# split panes using | and -
+unbind <
+bind < split-window -h -c '#{pane_current_path}'
+bind - split-window -v -c '#{pane_current_path}'
+unbind '"'
+unbind %
+
+# Color variables
+
+background="#282a36"
+foreground="#f8f8f2"
+right_corner="#f1fa8c"
+
+# Enable mouse mode (tmux 2.1 and above)
+set -g mouse on
+
+set -g status 'on'
+set -g status-bg $background
+set -g status-left-length '100'
+set -g status-right-length '100'
+set -g status-justify 'centre'
+set -g message-style fg=$background,bg=$background
+set -g message-command-style fg=$foreground,bg=$background
+set -g pane-border-style fg=$foreground
+set -g pane-active-border-style fg=$foreground
+setw -g window-status-activity-style fg=$foreground,bg=$background,none
+setw -g window-status-separator ''
+setw -g window-status-style fg=$foreground,bg=$background,none
+set -g status-left '#[fg=colour232,bg=#a1b56c] #S #[fg=#a1b56c,bg=$background,nobold,nounderscore,noitalics]#[fg=#86c1b9,bg=$background] #W'
+set -g status-right '#[fg=$background,bg=$background,nobold,nounderscore,noitalics]#[fg=#86c1b9,bg=$background] #(uptime  | cut -d " " -f 1,2)  %a  %Y #[fg=$right_corner,bg=$background,nobold,nounderscore,noitalics] #[fg=$background,bg=#right_corner] DDOG '
+setw -g window-status-current-format ''
+
+# pane navigation
+bind -r h select-pane -L  # move left
+bind -r j select-pane -D  # move down
+bind -r k select-pane -U  # move up
+bind -r l select-pane -R  # move right
+

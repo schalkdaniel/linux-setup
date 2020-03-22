@@ -32,5 +32,5 @@ set -g pane-border-style fg=#ff79c6
 set -g pane-active-border-style fg=#ff79c6
 setw -g window-status-activity-style fg=#f8f8f2,bg=#282a36
 setw -g window-status-style fg=#f8f8f2,bg=#282a36
-set -g status-left '#[fg=#282a36,bg=#caa9fa]  #(whoami) #[fg=#caa9fa,bg=#ff79c6]  #[fg=#282a36,bg=#ff79c6] #S #[fg=#a1b56c,bg=,nobold,nounderscore,noitalics]#[fg=#86c1b9,bg=] #W'
+set -g status-left '#[fg=#caa9fa,bg=#282a36]#[fg=#282a36,bg=#caa9fa]  #(whoami) #[fg=#caa9fa,bg=#ff79c6]  #[fg=#282a36,bg=#ff79c6] #S #[fg=#a1b56c,bg=,nobold,nounderscore,noitalics]#[fg=#86c1b9,bg=] #W'
 set -g status-right '#[fg=#f8f8f2,bg=#282a36]#[fg=#282a36,bg=#f8f8f2] %a  %Y #[fg=#ff79c6,bg=#f8f8f2]#[fg=#282a36,bg=#ff79c6] DDOG '
