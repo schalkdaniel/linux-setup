@@ -16,6 +16,7 @@ getColorFromFile () {
   cat $2 | grep $1= | cut -d= -f2-
 }
 
+sed -i '/^set -g status-bg/d' $TMUX_CONF
 sed -i '/^set -g message-style/d' $TMUX_CONF
 sed -i '/^set -g message-style/d' $TMUX_CONF
 sed -i '/^set -g message-command-style/d' $TMUX_CONF
@@ -26,12 +27,13 @@ sed -i '/^setw -g window-status-style/d' $TMUX_CONF
 sed -i '/^set -g status-left/d' $TMUX_CONF
 sed -i '/^set -g status-right/d' $TMUX_CONF
 
-echo "set -g message-style fg="$(getColorFromFile foreground $TERMITE_CONF)",bg="$(getColorFromFile background $TERMITE_CONF) >> $TMUX_CONF
-echo "set -g message-command-style fg="$(getColorFromFile foreground $TERMITE_CONF)",bg="$(getColorFromFile background $TERMITE_CONF) >> $TMUX_CONF
-echo "set -g pane-border-style fg="$(getColorFromFile color5 $TERMITE_CONF) >> $TMUX_CONF
-echo "set -g pane-active-border-style fg="$(getColorFromFile color5 $TERMITE_CONF) >> $TMUX_CONF
-echo "setw -g window-status-activity-style fg="$(getColorFromFile foreground $TERMITE_CONF)",bg="$(getColorFromFile background $TERMITE_CONF) >> $TMUX_CONF
-echo "setw -g window-status-style fg="$(getColorFromFile foreground $TERMITE_CONF)",bg="$(getColorFromFile background $TERMITE_CONF) >> $TMUX_CONF
-echo "set -g status-left '#[fg="$(getColorFromFile background $TERMITE_CONF)",bg="$(getColorFromFile color4 $TERMITE_CONF)"]  #(whoami) #[fg="$(getColorFromFile color4 $TERMITE_CONF)",bg="$(getColorFromFile color5 $TERMITE_CONF)"]  #[fg="$(getColorFromFile background $TERMITE_CONF)",bg="$(getColorFromFile color5 $TERMITE_CONF)"] #S #[fg=#a1b56c,bg=$background,nobold,nounderscore,noitalics]#[fg=#86c1b9,bg=$background] #W'" >> $TMUX_CONF
+echo "set -g status-bg \""$(getColorFromFile background $TERMITE_CONF)"\"" >> $TMUX_CONF
+echo "set -g message-style fg=\""$(getColorFromFile foreground $TERMITE_CONF)"\",bg=\""$(getColorFromFile background $TERMITE_CONF)"\"" >> $TMUX_CONF
+echo "set -g message-command-style fg=\""$(getColorFromFile foreground $TERMITE_CONF)"\",bg=\""$(getColorFromFile background $TERMITE_CONF)"\"" >> $TMUX_CONF
+echo "set -g pane-border-style fg=\""$(getColorFromFile color4 $TERMITE_CONF)"\"" >> $TMUX_CONF
+echo "set -g pane-active-border-style fg=\""$(getColorFromFile color5 $TERMITE_CONF)"\"" >> $TMUX_CONF
+echo "setw -g window-status-activity-style fg=\""$(getColorFromFile foreground $TERMITE_CONF)"\",bg=\""$(getColorFromFile background $TERMITE_CONF)"\"" >> $TMUX_CONF
+echo "setw -g window-status-style fg=\""$(getColorFromFile foreground $TERMITE_CONF)"\",bg=\""$(getColorFromFile background $TERMITE_CONF)"\"" >> $TMUX_CONF
+echo "set -g status-left '#[fg="$(getColorFromFile background $TERMITE_CONF)",bg="$(getColorFromFile color4 $TERMITE_CONF)"]  "$(whoami)" #[fg="$(getColorFromFile color4 $TERMITE_CONF)",bg="$(getColorFromFile color5 $TERMITE_CONF)"]  #[fg="$(getColorFromFile background $TERMITE_CONF)",bg="$(getColorFromFile color5 $TERMITE_CONF)"] #S #[fg=#a1b56c,bg="$(getColorFromFile background $TERMITE_CONF)",nobold,nounderscore,noitalics] #[fg=#86c1b9,bg="$(getColorFromFile background $TERMITE_CONF)"] #W'" >> $TMUX_CONF
 echo "set -g status-right '#[fg="$(getColorFromFile foreground $TERMITE_CONF)",bg="$(getColorFromFile background $TERMITE_CONF)"]#[fg="$(getColorFromFile background $TERMITE_CONF)",bg="$(getColorFromFile foreground $TERMITE_CONF)"] %a  %Y #[fg="$(getColorFromFile color5 $TERMITE_CONF)",bg="$(getColorFromFile foreground $TERMITE_CONF)"]#[fg="$(getColorFromFile background $TERMITE_CONF)",bg="$(getColorFromFile color5 $TERMITE_CONF)"] DDOG '" >> $TMUX_CONF
 

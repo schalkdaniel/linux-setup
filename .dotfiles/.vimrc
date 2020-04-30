@@ -6,6 +6,7 @@ set directory=~/.vim_files/.swp/,.,~/tmp,/var/tmp,/tmp
 set undodir=~/.vim_files/.undo/,.,~/tmp,/var/tmp,/tmp
 
 set ve+=onemore		" Enable cursor to be AFTER the last letter
+set noequalalways " Do not always resize panes after closing one
 
 set number		" Add line numbers to files
 " set spell          	" Enable spell checking
@@ -18,6 +19,9 @@ set smartindent		    " Should do indenting automagically
 set cindent          	" Indenting for C type languages
 set showcmd           " Shows the commands in the lower right corner
 set mouse=a
+set spell
+set relativenumber
+set hlsearch
 
 set clipboard=unnamedplus
 set backspace=indent,eol,start
