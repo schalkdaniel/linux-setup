@@ -103,4 +103,3 @@ POWERLEVEL9K_CUSTOM_OS_ICON_BACKGROUND=#6d9cbe
 POWERLEVEL9K_CUSTOM_OS_ICON_FOREGROUND=#f9f7f3
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_os_icon ssh root_indicator dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time ram)
-source ~/powerlevel10k/powerlevel10k.zsh-theme

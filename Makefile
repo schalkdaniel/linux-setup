@@ -24,7 +24,6 @@ zsh-setup:
 	make nerd-font
 	yay -S zsh-autosuggestions
 	yay -S zsh-syntax-highlighting
-	yay -S zsh-theme-powerlevel9k
 	yay -S zsh-theme-powerlevel10k
 	ln -s -f ~/linux-setup/.dotfiles/.zshrc ~/
 
@@ -55,8 +54,8 @@ tmux-color-scheme:
 	TMUX_CONF=~/linux-setup/.dotfiles/.tmux.conf
 	TERMITE_CONF=~/.config/termite/config
 	getColorFromFile () { cat $2 | grep $1= | cut -d= -f2- }
-	sed '/^set -g status-right/d' $TMUX_CONF > $TMUX_CONT
-	sed '/^set -g status-left/d' $TMUX_CONF > $TMUX_CONT
+	sed '/^set -g status-right/d' $TMUX_CONF > $TMUX_CONF
+	sed '/^set -g status-left/d' $TMUX_CONF > $TMUX_CONF
 	echo 'foreground='$(getColorFromFile foreground $TERMITE_CONF) >> test.txt
 
 
