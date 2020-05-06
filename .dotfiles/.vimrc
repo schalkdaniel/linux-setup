@@ -99,7 +99,7 @@ let g:move_key_modifier = 'C'
 " -----------------------
 
 " Required for clang complete
-let g:clang_library_path='/usr/lib64/libclang.so.9'
+let g:clang_library_path='/usr/lib64/libclang.so.10'
 
 " Start nerdtree from the beginning:
 autocmd StdinReadPre * let s:std_in=1

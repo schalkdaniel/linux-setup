@@ -20,12 +20,12 @@ bind -r k select-pane -U  # move up
 bind -r l select-pane -R  # move right
 
 
-set -g status-bg "#1d2021"
-set -g message-style fg="#ebdbb2",bg="#1d2021"
-set -g message-command-style fg="#ebdbb2",bg="#1d2021"
-set -g pane-border-style fg="#458588"
-set -g pane-active-border-style fg="#b16286"
-setw -g window-status-activity-style fg="#ebdbb2",bg="#1d2021"
-setw -g window-status-style fg="#ebdbb2",bg="#1d2021"
-set -g status-left '#[fg=#1d2021,bg=#458588]  daniel #[fg=#458588,bg=#b16286]  #[fg=#1d2021,bg=#b16286] #S #[fg=#a1b56c,bg=#1d2021,nobold,nounderscore,noitalics] #[fg=#86c1b9,bg=#1d2021] #W'
-set -g status-right '#[fg=#ebdbb2,bg=#1d2021]#[fg=#1d2021,bg=#ebdbb2] %a  %Y #[fg=#b16286,bg=#ebdbb2]#[fg=#1d2021,bg=#b16286] DDOG '
+set -g status-bg "#fcfdfe"
+set -g message-style fg="#515253",bg="#fcfdfe"
+set -g message-command-style fg="#515253",bg="#fcfdfe"
+set -g pane-border-style fg="#3182bd"
+set -g pane-active-border-style fg="#756bb1"
+setw -g window-status-activity-style fg="#515253",bg="#fcfdfe"
+setw -g window-status-style fg="#515253",bg="#fcfdfe"
+set -g status-left '#[fg=#fcfdfe,bg=#3182bd]  daniel #[fg=#3182bd,bg=#756bb1]  #[fg=#fcfdfe,bg=#756bb1] #S #[fg=#a1b56c,bg=#fcfdfe,nobold,nounderscore,noitalics] #[fg=#86c1b9,bg=#fcfdfe] #W'
+set -g status-right '#[fg=#515253,bg=#fcfdfe]#[fg=#fcfdfe,bg=#515253] %a  %Y #[fg=#756bb1,bg=#515253]#[fg=#fcfdfe,bg=#756bb1] DDOG '
