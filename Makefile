@@ -35,6 +35,9 @@ vim:
 	./configure --enable-gui=no --with-x --enable-pythoninterp
 	sudo make
 	sudo make install
+	mkdir -p ~/.vim/autoload/
+	wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	mv plug.vim ~/.vim/autoload/
 	ln -s -f ~/linux-setup/.dotfiles/.vimrc ~/
 
 termite:
