@@ -4,6 +4,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
 
+#Mirrorlist anlegen
+alias umirror="sudo reflector --latest 30 --country Germany --sort score --save /etc/pacman.d/mirrorlist"
+
 command -v lsd &> /dev/null && alias ls='lsd --group-dirs first'
 command -v htop &> /dev/null && alias top='htop'
 

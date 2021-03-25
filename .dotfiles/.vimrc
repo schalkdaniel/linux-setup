@@ -52,13 +52,16 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 
 " Plugin for C++ highlighting: https://github.com/bfrg/vim-cpp-modern
-Plug 'bfrg/vim-cpp-modern'
+"Plug 'bfrg/vim-cpp-modern'
 
 " Plugin for C++ autocompletion based on clang (required here!): https://github.com/xavierd/clang_complete
-Plug 'xavierd/clang_complete'
+"Plug 'xavierd/clang_complete'
 
 " R plugin: https://github.com/jalvesaq/Nvim-R
-Plug 'jalvesaq/Nvim-R'
+"Plug 'jalvesaq/Nvim-R'
+
+" Plugin to send code to other windows:
+Plug 'karoliskoncevicius/vim-sendtowindow'
 
 " Efficient move commands: https://github.com/matze/vim-move
 Plug 'matze/vim-move'
@@ -67,6 +70,12 @@ Plug 'matze/vim-move'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 
+" Comment shortcuts for a lot of languages
+Plug 'preservim/nerdcommenter'
+
+
+" Autocompletion for varius languages
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 call plug#end()
@@ -76,17 +85,17 @@ call plug#end()
 " ------------------------
 
 " Set window with and height of Nvim-R:
-if winwidth(0) < 1200
-	let R_rconsole_width = winwidth(0)
-else
-	let R_rconsole_width = winwidth(0) / 2
-endif
+"if winwidth(0) < 1200
+	"let R_rconsole_width = winwidth(0)
+"else
+	"let R_rconsole_width = winwidth(0) / 2
+"endif
 
-let R_pdfviewer = 'evince'
-let g:R_assign = 0                  " Don't create the assign arrow when typing "_"
-let R_args = ['--no-save', '--no-restore-data', '--quiet']
-" Send line to R console
-autocmd VimEnter * map <C-l> 0\lj
+"let R_pdfviewer = 'evince'
+"let g:R_assign = 0                  " Don't create the assign arrow when typing "_"
+"let R_args = ['--no-save', '--no-restore-data', '--quiet']
+"" Send line to R console
+"autocmd VimEnter * map <C-l> 0\lj
 
 
 " vim-move:
@@ -108,5 +117,33 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
 
 nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+
+
+" cac-nvim
+" ------------------------------
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+
+
 
 

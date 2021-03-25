@@ -36,6 +36,7 @@ vim:
 	sudo make
 	sudo make install
 	ln -s -f ~/linux-setup/.dotfiles/.vimrc ~/
+  # Run CocInstall coc-r-lsp coc-flutter coc-clangd
 
 termite:
 	yay -S termite
@@ -68,6 +69,7 @@ r:
 	yay -S r
 	sudo ln -s -f ~/linux-setup/.dotfiles/.Renviron ~/
 	sudo ln -s -f ~/linux-setup/.dotfiles/.Rprofile ~/
+	Rscript -e "install.packages(c('devtools', 'Rcpp', 'languageserver'))"
 
 virtualbox:
 	yay -S virtualbox
