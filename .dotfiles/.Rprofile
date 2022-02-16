@@ -11,9 +11,19 @@ options(
   scipen = 2, #use scientific notation for values >10^7
   deparse.max.lines = 3L, # reduce output of traceback
   editor = "vim",
-  help_type = "text"
+  help_type = "text",
+  browser = "/usr/bin/chromium"
 )
 
 if(interactive()) {
   suppressMessages(prettycode::prettycode())
 }
+
+wideScreen = function(howWide = trunc(as.integer(Sys.getenv("COLUMNS")) * 0.9)) {
+  if (! is.na(howWide)) {
+    if ((howWide > 10) || (howWide < 10000))
+      options(width = howWide)
+  }
+}
+wideScreen()
+

@@ -45,7 +45,10 @@ bindkey -v
 # bindkey '^[[3;5~' kill-word
 
 # ----- promt -----
-PS1="%F{cyan} %~ >%F{blue}> %F{reset}"
+#PS1="%F{cyan} %~ >%F{blue}> %F{reset}"
+
+#PS1="┌─────(%~
+#└>%> "
 
 # ----- plugins -----
 PLUGINS_DIR=/usr/share/zsh/plugins
@@ -54,57 +57,17 @@ source $PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/
 
 autoload compinit && compinit
 
-# -------------------------------- POWERLEVEL ---------------------------------
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats 'on branch %b'
 
 
-if [[ $(tty) == /dev/pts/* ]]; then
-	source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme 2> /dev/null || echo -e '\033[33m[ ! ]\033[0m ZSH powerlevel10k not installed'
-else
-	clear
-	echo
-	echo
-fi
-
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-POWERLEVEL9K_MODE=nerdfont-complete
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K=truncate_beginning
-POWERLEVEL9K_TIME_BACKGROUND=#405c79
-POWERLEVEL9K_TIME_FOREGROUND=#f7f9fb
-POWERLEVEL9K_STATUS_BACKGROUND=#405c79
-POWERLEVEL9K_STATUS_FOREGROUND=#f7f9fb
-POWERLEVEL9K_TIME_FORMAT=%D{%I:%M}
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND=black
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND=green
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=black
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=yellow
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=#f7f9fb
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=#405c79
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=#405c79
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=#bf568b
-POWERLEVEL9K_DIR_FOREGROUND=#f7f9fb
-POWERLEVEL9K_DIR_BACKGROUND=#bf568b
-POWERLEVEL9K_RAM_FOREGROUND=#f7f9fb
-POWERLEVEL9K_RAM_BACKGROUND=#bf568b
-POWERLEVEL9K_FOLDER_ICON=
-POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-POWERLEVEL9K_VCS_UNTRACKED_ICON=●
-POWERLEVEL9K_VCS_UNSTAGED_ICON=±
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=↓
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=↑
-POWERLEVEL9K_VCS_COMMIT_ICON=' '
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{#8b56bf}╭─%F{#8b56bf}'
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{#8b56bf}╰%f '
-POWERLEVEL9K_CUSTOM_OS_ICON='echo   daniel '
-POWERLEVEL9K_CUSTOM_OS_ICON_BACKGROUND=#8b56bf
-POWERLEVEL9K_CUSTOM_OS_ICON_FOREGROUND=#f7f9fb
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_os_icon ssh root_indicator dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time ram)
+ZSH_THEME=robbyrussell
+# Set up the prompt (with git branch name)
+#setopt PROMPT_SUBST
+#PROMPT='┌─%n in ${PWD/#$HOME/~} ${vcs_info_msg_0_}
+#└>%> '

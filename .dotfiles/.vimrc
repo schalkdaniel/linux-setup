@@ -22,6 +22,7 @@ set mouse=a
 set spell
 set relativenumber
 set hlsearch
+set statusline+=col:\ %c,
 
 set clipboard=unnamedplus
 set backspace=indent,eol,start
@@ -38,6 +39,11 @@ hi SpellBad cterm=underline ctermfg=red
 "
 " Custom command to enter a new line in normal mode
 map <Enter> O<ESC>
+
+" Colors at https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
+syntax on
+hi Visual cterm=NONE ctermfg=NONE ctermbg=237 guibg=#3a3a3a
+hi Search ctermbg=107 ctermfg=15
 
 " PLUGIN SECTION
 " ===========================================================
