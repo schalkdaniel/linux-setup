@@ -25,5 +25,13 @@ wideScreen = function(howWide = trunc(as.integer(Sys.getenv("COLUMNS")) * 0.9)) 
       options(width = howWide)
   }
 }
+
+# Just use 1 core by default:
+Sys.setenv(OMP_NUM_THREADS=1)
+Sys.setenv(OMP_THREAD_LIMIT=1)
+try(data.table::setDTthreads(1))
+#try(RhpcBLASctl::blas_set_num_threads(1))
+#try(RhpcBLASctl::omp_set_num_threads(1))
+
 wideScreen()
 

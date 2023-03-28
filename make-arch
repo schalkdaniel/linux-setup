@@ -1,0 +1,46 @@
+all:
+	make tools
+
+tools:
+	pacman -S yay
+	yay -S git
+	make git-setup
+	yay -S curl
+	yay -S python3
+	yay -S lsd
+	yay -S zsh
+	make zsh-setup
+	make nvim
+	make r
+	ln -s -f ~/linux-setup/.dotfiles/.bashrc ~/
+
+git-setup:
+	ln -s -f ~/linux-setup/.dotfiles/.gitconfig ~/
+
+alacritty:
+	yay -S alacritty
+	mkdir -p ~/.config/alacritty/
+	ln -s -f ~/linux-setup/.dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty/
+
+zsh-setup:
+	chsh -s "$( which zsh)"
+	make nerd-font
+	ln -s -f ~/linux-setup/.dotfiles/.zshrc ~/
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+nvim:
+	yay -S neovim
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'	mkdir -p ~/.config/nvim
+	ln -s -f ~/linux-setup/.dotfiles/init.vim ~/.config/nvim/
+
+nerd-font:
+	git clone https://github.com/ryanoasis/nerd-fonts.git ~/
+	~/nerd-fonts/install.sh
+	rm -r ~/nerd-fonts
+
+r:
+	yay -S r
+	sudo ln -s -f ~/linux-setup/.dotfiles/.Renviron ~/
+	sudo ln -s -f ~/linux-setup/.dotfiles/.Rprofile ~/
+	Rscript -e "install.packages(c('devtools', 'Rcpp', 'languageserver'))"

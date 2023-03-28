@@ -1,6 +1,10 @@
 " BASIC CONFIGS
 " ===========================================================
 
+" For clipboard check `:help clipboard` and install `xclip`
+
+let mapleader = "\<Space>"
+
 set backupdir=~/.vim_files/.backup/,.,~/tmp,/var/tmp,/tmp
 set directory=~/.vim_files/.swp/,.,~/tmp,/var/tmp,/tmp
 set undodir=~/.vim_files/.undo/,.,~/tmp,/var/tmp,/tmp
@@ -10,26 +14,38 @@ set noequalalways " Do not always resize panes after closing one
 
 set number	         	" Add line numbers to files
 " set spell          	" Enable spell checking
-
-set tabstop=2        	" Defines the blanks of a tab
+set tabstop=2         " Defines the blanks of a tab
 set shiftwidth=2	    " Defines how many blanks a shift (<C-t> or <C-d>) is
-set expandtab		      " Use spaces instead of tabs!
 set autoindent        " Should do indenting automatically
 set smartindent		    " Should do indenting automagically
 set cindent          	" Indenting for C type languages
 set showcmd           " Shows the commands in the lower right corner
 set mouse=a
 set relativenumber
+set splitbelow
 set hlsearch
 set statusline+=%F\ p=%c\ %m
-
-set clipboard=unnamedplus
-set backspace=indent,eol,start
-
+set encoding=utf-8
 set spell
 set spelllang=en_us,de_de
 
+
+"set clipboard=unnamedplus
+set backspace=indent,eol,start
+
 autocmd BufWritePre * %s/\s\+$//e 	" Trim trialing white spaces
+
+" Set Ctrl as escape command for terminal insert mode:
+tnoremap <Esc> <C-\><C-n> " Escape temrminal instert mode with escape
+" autocmd TermOpen * startinsert " Start terminal in insert mode
+au TermOpen * setlocal nospell " No spell check in terminal
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" Enable folding with the spacebar
+nnoremap <space> za
 
 " A nicer highlighting of spelling errors:
 hi clear SpellBad
@@ -68,8 +84,9 @@ Plug 'scrooloose/nerdtree'
 " R plugin: https://github.com/jalvesaq/Nvim-R
 "Plug 'jalvesaq/Nvim-R'
 
+" REPLACED BY neoterm
 " Plugin to send code to other windows:
-Plug 'karoliskoncevicius/vim-sendtowindow'
+" Plug 'karoliskoncevicius/vim-sendtowindow'
 
 " Efficient move commands: https://github.com/matze/vim-move
 Plug 'matze/vim-move'
@@ -81,35 +98,34 @@ Plug 'tpope/vim-surround'
 " Comment shortcuts for a lot of languages
 Plug 'preservim/nerdcommenter'
 
-
+" Fuzzy finder
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Autocompletion for varius programming languages
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Install R:
+" install.packages("languageserver")
+" :CocInstall coc-r-lsp
+
+
+" Neoterm for sending code into terminal buffer:
+Plug 'kassio/neoterm'
 
 call plug#end()
 
+" Neoterm:
+" -----------------------
 
-" Nvim-R:
-" ------------------------
-
-" Set window with and height of Nvim-R:
-"if winwidth(0) < 1200
-	"let R_rconsole_width = winwidth(0)
-"else
-	"let R_rconsole_width = winwidth(0) / 2
-"endif
-
-"let R_pdfviewer = 'evince'
-"let g:R_assign = 0                  " Don't create the assign arrow when typing "_"
-"let R_args = ['--no-save', '--no-restore-data', '--quiet']
-"" Send line to R console
-"autocmd VimEnter * map <C-l> 0\lj
+nnoremap <silent> <leader>j :TREPLSendLine<CR>0j
+vnoremap <silent> <leader>j :TREPLSendSelection<CR>
 
 " vim-move:
 " -----------------------
 
 " Set Strg as key to move up/down lines (vim-move):
 let g:move_key_modifier = 'C'
+let g:move_key_modifier_visualmode = 'C'
 
 " Custom commands:
 " -----------------------
@@ -126,7 +142,7 @@ let NERDTreeShowHidden=1
 nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
 
-" cac-nvim
+" coc-nvim
 " ------------------------------
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -150,7 +166,13 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
-
-
-
+" For python:
+autocmd BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
 
