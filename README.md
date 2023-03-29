@@ -25,3 +25,9 @@ This repository is more a summary about the tools and how to install everything 
 
 - [Arch linux](https://archlinux.org/)
 - IDE: [Budgie desktop](https://de.wikipedia.org/wiki/Budgie_(Desktop-Umgebung)
+
+## Screenshots
+
+![](/home/daniel/linux-setup/screenshots/screen1.png)
+
+![](/home/daniel/linux-setup/screenshots/screen2.png)
