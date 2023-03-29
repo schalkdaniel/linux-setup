@@ -59,15 +59,15 @@ match Whitespace /\s/
 
 " A nicer highlighting of spelling errors:
 hi clear SpellBad
+hi clear SpellCap   " word not capitalized
+hi clear SpellRare  " rare word
+hi clear SpellLocal " wrong spelling for selected region
 hi SpellBad cterm=underline ctermfg=red
+hi SpellCap cterm=underline ctermfg=red
+hi SpellLocal cterm=underline ctermfg=red
 
 " Custom command to enter a new line in normal mode
 map <Enter> O<ESC>
-
-" Colors at https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
-"syntax on
-"hi Visual cterm=NONE ctermfg=NONE ctermbg=237 guibg=#3a3a3a
-"hi Search ctermbg=107 ctermfg=15
 
 " PLUGIN SECTION
 " ===========================================================
@@ -87,14 +87,14 @@ Plug 'scrooloose/nerdtree'
 " Efficient move commands: https://github.com/matze/vim-move
 Plug 'matze/vim-move'
 
-" Easy  editing of parantheses:
+" Easy  editing of parentheses:
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 
 " Comment shortcuts for a lot of languages
 Plug 'preservim/nerdcommenter'
 
-" Autocompletion for varius programming languages
+" Autocompletion for various programming languages
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Install R:
