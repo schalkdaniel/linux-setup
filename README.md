@@ -28,6 +28,6 @@ This repository is more a summary about the tools and how to install everything 
 
 ## Screenshots
 
-![](/home/daniel/linux-setup/screenshots/screen1.png)
+![](screenshots/screen1.png)
 
-![](/home/daniel/linux-setup/screenshots/screen2.png)
+![](screenshots/screen2.png)
