@@ -29,7 +29,6 @@ set encoding=utf-8
 set spell
 set spelllang=en_us,de_de
 
-
 "set clipboard=unnamedplus
 set backspace=indent,eol,start
 
@@ -47,21 +46,28 @@ set foldlevel=99
 " Enable folding with the spacebar
 nnoremap <space> za
 
+" For python:
+autocmd BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
+
+:set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+:set list
+
+" Gray highlighting for white spaces:
+hi Whitespace ctermfg=DarkGray
+match Whitespace /\s/
+match Whitespace /\s/
+
 " A nicer highlighting of spelling errors:
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=red
 
-" Navigate in completion with j and k instead of C-n and C-p:
-"inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
-"inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
-"
 " Custom command to enter a new line in normal mode
 map <Enter> O<ESC>
 
 " Colors at https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
-syntax on
-hi Visual cterm=NONE ctermfg=NONE ctermbg=237 guibg=#3a3a3a
-hi Search ctermbg=107 ctermfg=15
+"syntax on
+"hi Visual cterm=NONE ctermfg=NONE ctermbg=237 guibg=#3a3a3a
+"hi Search ctermbg=107 ctermfg=15
 
 " PLUGIN SECTION
 " ===========================================================
@@ -75,18 +81,8 @@ call plug#begin('~/.vim/plugged')
 " Plugin for file explorer on left side: https://github.com/scrooloose/nerdtree
 Plug 'scrooloose/nerdtree'
 
-" Plugin for C++ highlighting: https://github.com/bfrg/vim-cpp-modern
-"Plug 'bfrg/vim-cpp-modern'
-
 " Plugin for C++ autocompletion based on clang (required here!): https://github.com/xavierd/clang_complete
 "Plug 'xavierd/clang_complete'
-
-" R plugin: https://github.com/jalvesaq/Nvim-R
-"Plug 'jalvesaq/Nvim-R'
-
-" REPLACED BY neoterm
-" Plugin to send code to other windows:
-" Plug 'karoliskoncevicius/vim-sendtowindow'
 
 " Efficient move commands: https://github.com/matze/vim-move
 Plug 'matze/vim-move'
@@ -98,19 +94,22 @@ Plug 'tpope/vim-surround'
 " Comment shortcuts for a lot of languages
 Plug 'preservim/nerdcommenter'
 
-" Fuzzy finder
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Autocompletion for varius programming languages
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Install R:
 " install.packages("languageserver")
 " :CocInstall coc-r-lsp
-
+" :CocInstall coc-jedi
+" yay -S python-jedi
 
 " Neoterm for sending code into terminal buffer:
-Plug 'kassio/neoterm'
+"Plug 'kassio/neoterm' " Removed because of python issues.
+Plug 'karoliskoncevicius/vim-sendtowindow'
+
+" color preview for vim
+Plug 'gko/vim-coloresque'
+
 
 call plug#end()
 
@@ -131,7 +130,7 @@ let g:move_key_modifier_visualmode = 'C'
 " -----------------------
 
 " Required for clang complete
-let g:clang_library_path='/usr/lib64/libclang.so.10'
+"let g:clang_library_path='/usr/lib64/libclang.so.10'
 
 " Start nerdtree from the beginning:
 autocmd StdinReadPre * let s:std_in=1
@@ -140,7 +139,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
 
 nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
-
 
 " coc-nvim
 " ------------------------------
@@ -154,10 +152,22 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use Ctrl + Enter to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-Enter> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -166,13 +176,6 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
-" For python:
-autocmd BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
-
+" Stop indenting for python
+let g:neoterm_bracketed_paste=1
+"let g:neoterm_repl_python = 'python --no-autodindent'

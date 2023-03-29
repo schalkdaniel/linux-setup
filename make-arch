@@ -20,11 +20,12 @@ git-setup:
 alacritty:
 	yay -S alacritty
 	mkdir -p ~/.config/alacritty/
-	ln -s -f ~/linux-setup/.dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty/
+	ln -s -f ~/linux-setup/.dotfiles/alacritty.yml ~/.config/alacritty/
 
 zsh-setup:
 	chsh -s "$( which zsh)"
 	make nerd-font
+  yay -S zsh-autosuggestions
 	ln -s -f ~/linux-setup/.dotfiles/.zshrc ~/
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
