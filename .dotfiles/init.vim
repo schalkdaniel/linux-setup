@@ -13,12 +13,10 @@ set ve+=onemore		" Enable cursor to be AFTER the last letter
 set noequalalways " Do not always re-size panes after closing one
 
 set number	         	" Add line numbers to files
-" set spell          	" Enable spell checking
+set spell            	" Enable spell checking
+set expandtab
 set tabstop=2         " Defines the blanks of a tab
 set shiftwidth=2	    " Defines how many blanks a shift (<C-t> or <C-d>) is
-set autoindent        " Should do indenting automatically
-set smartindent		    " Should do indenting automagically
-set cindent          	" Indenting for C type languages
 set showcmd           " Shows the commands in the lower right corner
 set mouse=a
 set relativenumber
@@ -29,8 +27,12 @@ set encoding=utf-8
 set spell
 set spelllang=en_us,de_de
 
+let r_indent_align_args = 0
+set cindent
+set cinoptions=(1s,{1s,[1s
+
 "set clipboard=unnamedplus
-set backspace=indent,eol,start
+"set backspace=indent,eol,start
 
 autocmd BufWritePre * %s/\s\+$//e 	" Trim trialing white spaces
 
