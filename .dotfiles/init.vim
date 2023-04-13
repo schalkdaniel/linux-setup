@@ -9,6 +9,9 @@ set backupdir=~/.vim_files/.backup/,.,~/tmp,/var/tmp,/tmp
 set directory=~/.vim_files/.swp/,.,~/tmp,/var/tmp,/tmp
 set undodir=~/.vim_files/.undo/,.,~/tmp,/var/tmp,/tmp
 
+"set cursorcolumn
+"set cursorline
+
 set ve+=onemore		" Enable cursor to be AFTER the last letter
 set noequalalways " Do not always re-size panes after closing one
 
@@ -34,7 +37,34 @@ set cinoptions=(1s,{1s,[1s
 "set clipboard=unnamedplus
 "set backspace=indent,eol,start
 
-autocmd BufWritePre * %s/\s\+$//e 	" Trim trialing white spaces
+" autocmd BufWritePre * %s/\s\+$//e 	" Trim trialing white spaces
+" Function to trim trailing white spaces, copied from:
+" https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
+fun! TrimWhitespaceAll()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+command! TrimWhitespaceAll call TrimWhitespaceAll()
+autocmd BufWritePre * TrimWhitespace
+
+fun! TrimWhitespacePy()
+    let l:save = winsaveview()
+    keeppatterns %s/\>\s\+$//e
+    call winrestview(l:save)
+endfun
+command! TrimWhitespacePy call TrimWhitespacePy()
+
+fun! TrimWhitespace()
+    " Don't strip on these filetypes
+    if &ft =~ 'python'
+        TrimWhitespacePy
+    else
+        TrimWhitespaceAll
+    endif
+endfun
+command! TrimWhitespace call TrimWhitespace()
+
 
 " Set Ctrl as escape command for terminal insert mode:
 tnoremap <Esc> <C-\><C-n> " Escape temrminal instert mode with escape
@@ -49,10 +79,12 @@ set foldlevel=99
 nnoremap <space> za
 
 " For python:
-autocmd BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
+autocmd BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
+autocmd BufWritePre *.py TrimWhitespacePy
+"autocmd FileType python inoremap <CR> <CR>x<BS> " Disable to remove whitespaces of previous line when hitting enter
 
-:set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
-:set list
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+set list
 
 " Gray highlighting for white spaces:
 hi Whitespace ctermfg=DarkGray
@@ -80,6 +112,8 @@ map <Enter> O<ESC>
 
 call plug#begin('~/.vim/plugged')
 
+"Plug 'Yggdroot/indentLine'
+"
 " Plugin for file explorer on left side: https://github.com/scrooloose/nerdtree
 Plug 'scrooloose/nerdtree'
 
