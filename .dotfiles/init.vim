@@ -11,6 +11,10 @@ set undodir=~/.vim_files/.undo/,.,~/tmp,/var/tmp,/tmp
 
 "set cursorcolumn
 "set cursorline
+"set colorcolumn=81,121
+set colorcolumn=101
+
+highlight ColorColumn ctermbg=DarkGray
 
 set ve+=onemore		" Enable cursor to be AFTER the last letter
 set noequalalways " Do not always re-size panes after closing one
@@ -18,8 +22,8 @@ set noequalalways " Do not always re-size panes after closing one
 set number	         	" Add line numbers to files
 set spell            	" Enable spell checking
 set expandtab
-set tabstop=2         " Defines the blanks of a tab
-set shiftwidth=2	    " Defines how many blanks a shift (<C-t> or <C-d>) is
+set tabstop=4         " Defines the blanks of a tab
+set shiftwidth=4	    " Defines how many blanks a shift (<C-t> or <C-d>) is
 set showcmd           " Shows the commands in the lower right corner
 set mouse=a
 set relativenumber
@@ -50,7 +54,7 @@ autocmd BufWritePre * TrimWhitespace
 
 fun! TrimWhitespacePy()
     let l:save = winsaveview()
-    keeppatterns %s/\>\s\+$//e
+    keeppatterns %s/[^\n ]\zs\s\+$//e
     call winrestview(l:save)
 endfun
 command! TrimWhitespacePy call TrimWhitespacePy()
@@ -81,9 +85,8 @@ nnoremap <space> za
 " For python:
 autocmd BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
 autocmd BufWritePre *.py TrimWhitespacePy
-"autocmd FileType python inoremap <CR> <CR>x<BS> " Disable to remove whitespaces of previous line when hitting enter
 
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,leadmultispace:\|...,space:.
 set list
 
 " Gray highlighting for white spaces:
@@ -212,6 +215,8 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
-" Stop indenting for python
-let g:neoterm_bracketed_paste=1
-"let g:neoterm_repl_python = 'python --no-autodindent'
+" Disable to remove whitespaces of previous line when hitting enter
+inoremap <Return> <Return><Space><BS>
+nnoremap o o<Space><BS>
+nnoremap O O<Space><BS>
+
