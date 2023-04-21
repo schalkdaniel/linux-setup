@@ -22,8 +22,10 @@ set noequalalways " Do not always re-size panes after closing one
 set number	         	" Add line numbers to files
 set spell            	" Enable spell checking
 set expandtab
+set autoindent
 set tabstop=4         " Defines the blanks of a tab
 set shiftwidth=4	    " Defines how many blanks a shift (<C-t> or <C-d>) is
+set softtabstop=4
 set showcmd           " Shows the commands in the lower right corner
 set mouse=a
 set relativenumber
@@ -149,6 +151,7 @@ Plug 'karoliskoncevicius/vim-sendtowindow'
 " color preview for vim
 Plug 'gko/vim-coloresque'
 
+Plug 'github/copilot.vim'
 
 call plug#end()
 
