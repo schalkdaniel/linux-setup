@@ -25,14 +25,15 @@ alacritty:
 zsh-setup:
 	chsh -s "$( which zsh)"
 	make nerd-font
-    sudo apt install -y zsh-autosuggestions
+	sudo apt install -y zsh-autosuggestions
+	sudo apt install -y zsh-autosuggestions
 	ln -s -f ~/linux-setup/.dotfiles/.zshrc ~/
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 nvim:
 	sudo apt install -y neovim
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'	mkdir -p ~/.config/nvim
+	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'	mkdir -p ~/.config/nvim
 	ln -s -f ~/linux-setup/.dotfiles/init.vim ~/.config/nvim/
 
 nerd-font:
