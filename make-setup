@@ -1,0 +1,34 @@
+all:
+	make tools
+
+git-setup:
+	ln -s -f ~/linux-setup/.dotfiles/.gitconfig ~/
+
+alacritty-setup:
+	mkdir -p ~/.config/alacritty/
+	ln -s -f ~/linux-setup/.dotfiles/alacritty.yml ~/.config/alacritty/
+
+zsh-setup:
+	chsh -s "$(which zsh)"
+	make -f make-setup nerd-font
+	ln -s -f ~/linux-setup/.dotfiles/.zshrc ~/
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
+nvim-setup:
+	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+	    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	mkdir -p ~/.config/nvim
+	ln -s -f ~/linux-setup/.dotfiles/init.vim ~/.config/nvim/
+
+nerd-font:
+	git clone https://github.com/ryanoasis/nerd-fonts.git ~/nerd-fonts
+	~/nerd-fonts/install.sh
+	sudo rm -r ~/nerd-fonts
+
+r-setup:
+	mkdir -p ~/.R/library
+	sudo ln -s -f ~/linux-setup/.dotfiles/.Renviron ~/
+	sudo ln -s -f ~/linux-setup/.dotfiles/.Rprofile ~/
+	sudo ln -s -f ~/linux-setup/.dotfiles/.lintr ~/
+	Rscript -e "install.packages(c('prettycode', 'data.table', 'devtools', 'Rcpp', 'languageserver'))"

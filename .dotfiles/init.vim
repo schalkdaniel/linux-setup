@@ -71,7 +71,6 @@ fun! TrimWhitespace()
 endfun
 command! TrimWhitespace call TrimWhitespace()
 
-
 " Set Ctrl as escape command for terminal insert mode:
 tnoremap <Esc> <C-\><C-n> " Escape temrminal instert mode with escape
 " autocmd TermOpen * startinsert " Start terminal in insert mode
@@ -93,7 +92,6 @@ set list
 
 " Gray highlighting for white spaces:
 hi Whitespace ctermfg=DarkGray
-match Whitespace /\s/
 match Whitespace /\s/
 
 " A nicer highlighting of spelling errors:
@@ -138,11 +136,12 @@ Plug 'preservim/nerdcommenter'
 " Autocompletion for various programming languages
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Install R:
+" Install R linting:
 " install.packages("languageserver")
 " :CocInstall coc-r-lsp
-" :CocInstall coc-jedi
+" Install python linting:
 " yay -S python-jedi
+" :CocInstall coc-jedi
 
 " Neoterm for sending code into terminal buffer:
 "Plug 'kassio/neoterm' " Removed because of python issues.
@@ -152,6 +151,10 @@ Plug 'karoliskoncevicius/vim-sendtowindow'
 Plug 'gko/vim-coloresque'
 
 Plug 'github/copilot.vim'
+
+" Quarto support for vim.
+"Plug 'vim-pandoc/vim-pandoc-syntax'
+"Plug 'quarto-dev/quarto-vim'
 
 call plug#end()
 

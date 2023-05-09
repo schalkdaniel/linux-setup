@@ -9,7 +9,8 @@ ZSH_THEME="af-magic"
 plugins=(git)
 
 # PLUGINS:
-PLUGINS_DIR=/usr/share/zsh/plugins
-source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null || echo -e '\033[33m[ ! ]\033[0m ZSH auto-suggestions not installed'
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh || echo -e '\033[33m[ ! ]\033[0m ZSH auto-suggestions not installed'
+#PLUGINS_DIR=/usr/share/zsh/plugins
+#source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null || echo -e '\033[33m[ ! ]\033[0m ZSH auto-suggestions not installed'
 
 source $ZSH/oh-my-zsh.sh

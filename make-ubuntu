@@ -1,48 +1,21 @@
 all:
 	make tools
+	make -f make-setup git-setup
+	make -f make-setup zsh-setup
+	make -f make-setup alacritty-setup
+	make -f make-setup nvim-setup
+	make -f make-setup r-setup
 
 tools:
 	sudo snap install chromium chromium-ffmpeg
 	sudo apt install -y git
-	make git-setup
 	sudo apt install -y curl
 	sudo apt install -y python3
 	sudo apt install -y lsd
 	sudo apt install -y zsh
-	make zsh-setup
-	make nvim
-	make r
-	ln -s -f ~/linux-setup/.dotfiles/.bashrc ~/
-
-git-setup:
-	ln -s -f ~/linux-setup/.dotfiles/.gitconfig ~/
-
-alacritty:
+	sudo apt install -y zsh-autosuggestions
+	sudo apt install -y nodejs
 	sudo apt install -y alacritty
-	mkdir -p ~/.config/alacritty/
-	ln -s -f ~/linux-setup/.dotfiles/alacritty.yml ~/.config/alacritty/
-
-zsh-setup:
-	chsh -s "$( which zsh)"
-	make nerd-font
-	sudo apt install -y zsh-autosuggestions
-	sudo apt install -y zsh-autosuggestions
-	ln -s -f ~/linux-setup/.dotfiles/.zshrc ~/
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-nvim:
 	sudo apt install -y neovim
-	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'	mkdir -p ~/.config/nvim
-	ln -s -f ~/linux-setup/.dotfiles/init.vim ~/.config/nvim/
-
-nerd-font:
-	git clone https://github.com/ryanoasis/nerd-fonts.git ~/
-	~/nerd-fonts/install.sh
-	rm -r ~/nerd-fonts
-
-r:
-	sudo apt install r-base
-	sudo ln -s -f ~/linux-setup/.dotfiles/.Renviron ~/
-	sudo ln -s -f ~/linux-setup/.dotfiles/.Rprofile ~/
-	Rscript -e "install.packages(c('devtools', 'Rcpp', 'languageserver'))"
+	sudo apt install -y r-base
+	ln -s -f ~/linux-setup/.dotfiles/.bashrc ~/
