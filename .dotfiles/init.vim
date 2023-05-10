@@ -23,9 +23,9 @@ set number	         	" Add line numbers to files
 set spell            	" Enable spell checking
 set expandtab
 set autoindent
-set tabstop=4         " Defines the blanks of a tab
-set shiftwidth=4	    " Defines how many blanks a shift (<C-t> or <C-d>) is
-set softtabstop=4
+set tabstop=2         " Defines the blanks of a tab
+set shiftwidth=2	    " Defines how many blanks a shift (<C-t> or <C-d>) is
+set softtabstop=2
 set showcmd           " Shows the commands in the lower right corner
 set mouse=a
 set relativenumber
@@ -39,9 +39,6 @@ set spelllang=en_us,de_de
 let r_indent_align_args = 0
 set cindent
 set cinoptions=(1s,{1s,[1s
-
-"set clipboard=unnamedplus
-"set backspace=indent,eol,start
 
 " autocmd BufWritePre * %s/\s\+$//e 	" Trim trialing white spaces
 " Function to trim trailing white spaces, copied from:
@@ -83,12 +80,15 @@ set foldlevel=99
 " Enable folding with the spacebar
 nnoremap <space> za
 
+" Set the characters for the 'non-visible' stuff:
+setlocal listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,leadmultispace:\|.,space:.
+set list
+
 " For python:
 autocmd BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent fileformat=unix
+autocmd BufNewFile,BufRead *.py setlocal listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,leadmultispace:\|...,space:.
 autocmd BufWritePre *.py TrimWhitespacePy
 
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,leadmultispace:\|...,space:.
-set list
 
 " Gray highlighting for white spaces:
 hi Whitespace ctermfg=DarkGray
