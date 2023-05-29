@@ -202,6 +202,9 @@ bar {
 # Wallpaper:
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/another-forest.jpg
 
+# Show open windows:
+bindsym $mod+Tab exec rofi -show window
+
 # Lock screen:
 bindsym $mod+Shift+x exec i3lock
 
