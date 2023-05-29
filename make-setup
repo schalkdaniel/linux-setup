@@ -32,3 +32,9 @@ r-setup:
 	sudo ln -s -f ~/linux-setup/.dotfiles/.Rprofile ~/
 	sudo ln -s -f ~/linux-setup/.dotfiles/.lintr ~/
 	Rscript -e "install.packages(c('prettycode', 'data.table', 'devtools', 'Rcpp', 'languageserver'))"
+
+i3-setup:
+	mkdir -p ~/.config/i3/config
+	sudo ln -s -f ~/linux-setup/.dotfiles/i3/config
+
+

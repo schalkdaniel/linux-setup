@@ -2,7 +2,7 @@
 
 This setup is a lightweight setup that I use for my daily work. There are a few requirements I have regarding my technical setup that are:
 
-- It should not be too specific regarding the OS. Currently, I am using a custom [arch](https://archlinux.org/) install with [Budgie](https://de.wikipedia.org/wiki/Budgie_(Desktop-Umgebung)) as desktop environment.
+- It should not be too specific regarding the OS. Currently, I am using a custom [arch](https://archlinux.org/) install with [i3wm](https://i3wm.org) as desktop environment.
 - Easy installable (preferably just from the terminal).
 - The setup should have a good trade-off between _flexibility - appearance - extendibility_
 
@@ -24,10 +24,15 @@ This repository is more a summary about the tools and how to install everything 
 ## Current OS
 
 - [Arch linux](https://archlinux.org/)
-- IDE: [Budgie desktop](https://de.wikipedia.org/wiki/Budgie_(Desktop-Umgebung)
+- IDE: [i3](https://i3wm.org/)
+- [OLD] IDE: [Budgie desktop](https://de.wikipedia.org/wiki/Budgie_(Desktop-Umgebung)
 
-## Screenshots
+## i3 specific stuff
 
-![](screenshots/screen1.png)
+- Manage desktops requires [`xrandr`](https://wiki.archlinux.org/title/xrandr).
+- To add a second monitor use `xrandr --output DP-2 --auto --right-of eDP-1`.
+- Use `xrandr` to get an overview of connected monitors and resolutions.
+- To adjust the resolution use:
+  - `xrandr --output eDP-1 --mode 1920x1090` for a specific resolution.
+  - `xrandr --output eDP-1 --auto` for the maximal resolution.
 
-![](screenshots/screen2.png)
