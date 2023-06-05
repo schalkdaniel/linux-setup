@@ -203,6 +203,9 @@ bar {
 # Wallpaper:
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/another-forest.jpg
 
+# Poweroff:
+bindsym $mod+Shift+p exec poweroff
+
 # Show open windows:
 bindsym $mod+Tab exec rofi -show window
 
