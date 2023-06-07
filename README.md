@@ -35,4 +35,6 @@ This repository is more a summary about the tools and how to install everything 
 - To adjust the resolution use:
   - `xrandr --output eDP-1 --mode 1920x1090` for a specific resolution.
   - `xrandr --output eDP-1 --auto` for the maximal resolution.
-
+- Connect to wifi with `nmcli` (should be installed by default):
+  - `nmcli dev wifi` to show available connections
+  - `nmcli device wifi connect APname password XXXX` to connect with network
