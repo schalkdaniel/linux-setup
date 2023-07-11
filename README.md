@@ -38,3 +38,7 @@ This repository is more a summary about the tools and how to install everything 
 - Connect to wifi with `nmcli` (should be installed by default):
   - `nmcli dev wifi` to show available connections
   - `nmcli device wifi connect APname password XXXX` to connect with network
+
+## Other notes
+
+- Update mirrorlist: Install `pacman-mirrorlist` and use `sudo pacman -u`
