@@ -42,3 +42,11 @@ This repository is more a summary about the tools and how to install everything 
 ## Other notes
 
 - Update mirrorlist: Install `pacman-mirrorlist` and use `sudo pacman -u`
+
+## Python specific stuff
+
+- Use `venv` to manage projects. To setup call `python -m venv path/to/new/env`
+- This creates a folder `path/to/new/env` that also includes a bin folder that contains all the `python` and `pip` executable.
+- To work within the environment simply call them directly from the bin folder to ensure working where.
+- All packages etc. are installed into `path/to/new/env/lib/python-xxx/site-packages`.
+- __Note:__ To use a different interpreter (e.g., a specific version), install that python version and use `python-xxx -m venv path/to/new/env`. The `python` executable should then point to this specific version.
