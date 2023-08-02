@@ -226,3 +226,6 @@ inoremap <Return> <Return><Space><BS>
 nnoremap o o<Space><BS>
 nnoremap O O<Space><BS>
 
+" map copilot autocompletion to <C-Tab>
+imap <silent><script><expr> <C-J> copilot#Accept()
+let g:copilot_no_tab_map = v:true
